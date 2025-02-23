@@ -1,6 +1,6 @@
 [run]
 branch = True
-source = industry
+source = industries
 
 [report]
 exclude_lines =
