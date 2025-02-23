@@ -1,9 +1,9 @@
-# Template module for AllianceAuth.<a name="aa-industry"></a>
+# Template module for AllianceAuth.<a name="aa-industries"></a>
 
-A Industry tool for Alliance Auth
+A Industries tool for Alliance Auth
 _______________________________________________________________________
 
-- [AA Template](#aa-industry)
+- [AA Template](#aa-industries)
   - [Features](#features)
   - [Upcoming](#upcoming)
   - [Installation](#features)
@@ -33,7 +33,7 @@ _______________________________________________________________________
 Make sure you're in your virtual environment (venv) of your Alliance Auth then install the pakage.
 
 ```shell
-pip install aa-industry
+pip install aa-industries
 ```
 
 ### Step 2 - Configure Alliance Auth<a name="step2"></a>
@@ -42,15 +42,15 @@ Configure your Alliance Auth settings (`local.py`) as follows:
 
 - Add `'allianceauth.corputils',` to `INSTALLED_APPS`
 - Add `'eveuniverse',` to `INSTALLED_APPS`
-- Add `'industry',` to `INSTALLED_APPS`
+- Add `'industries',` to `INSTALLED_APPS`
 
 ### Step 3 - Add the Scheduled Tasks<a name="step3"></a>
 
 To set up the Scheduled Tasks add following code to your `local.py`
 
 ```python
-CELERYBEAT_SCHEDULE["industry_update_all_industry"] = {
-    "task": "industry.tasks.update_all_industry",
+CELERYBEAT_SCHEDULE["industries_update_all_industries"] = {
+    "task": "industries.tasks.update_all_industries",
     "schedule": crontab(minute=0, hour="*/1"),
 }
 ```
@@ -74,33 +74,33 @@ With the Following IDs you can set up the permissions for the Template
 
 The Following Settings can be setting up in the `local.py`
 
-- INDUSTRY_APP_NAME: `"YOURNAME"` - Set the name of the APP
+- INDUSTRIES_APP_NAME: `"YOURNAME"` - Set the name of the APP
 
-- INDUSTRY_LOGGER_USE: `True / False` - Set to use own Logger File
+- INDUSTRIES_LOGGER_USE: `True / False` - Set to use own Logger File
 
-If you set up INDUSTRY_LOGGER_USE to `True` you need to add the following code below:
+If you set up INDUSTRIES_LOGGER_USE to `True` you need to add the following code below:
 
 ```python
-LOGGING_INDUSTRY = {
+LOGGING_INDUSTRIES = {
     "handlers": {
-        "industry_file": {
+        "industries_file": {
             "level": "INFO",
             "class": "logging.handlers.RotatingFileHandler",
-            "filename": os.path.join(BASE_DIR, "log/industry.log"),
+            "filename": os.path.join(BASE_DIR, "log/industries.log"),
             "formatter": "verbose",
             "maxBytes": 1024 * 1024 * 5,
             "backupCount": 5,
         },
     },
     "loggers": {
-        "industry": {
-            "handlers": ["industry_file", "console"],
+        "industries": {
+            "handlers": ["industries_file", "console"],
             "level": "INFO",
         },
     },
 }
-LOGGING["handlers"].update(LOGGING_INDUSTRY["handlers"])
-LOGGING["loggers"].update(LOGGING_INDUSTRY["loggers"])
+LOGGING["handlers"].update(LOGGING_INDUSTRIES["handlers"])
+LOGGING["loggers"].update(LOGGING_INDUSTRIES["loggers"])
 ```
 
 ## Highlights<a name="highlights"></a>
@@ -108,5 +108,5 @@ LOGGING["loggers"].update(LOGGING_INDUSTRY["loggers"])
 > [!NOTE]
 > Contributing
 > You want to improve the project?
-> Just Make a [Pull Request](https://github.com/Geuthur/aa-industry/pulls) with the Guidelines.
+> Just Make a [Pull Request](https://github.com/Geuthur/aa-industries/pulls) with the Guidelines.
 > We Using pre-commit

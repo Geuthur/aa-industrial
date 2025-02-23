@@ -2,7 +2,7 @@
 
 import logging
 
-from industry.app_settings import INDUSTRY_APP_NAME
+from industries.app_settings import INDUSTRIES_APP_NAME
 
 
 def get_extension_logger(name):
@@ -16,7 +16,7 @@ def get_extension_logger(name):
     :return: an extensions child logger
     """
 
-    logger_name = "industry" if INDUSTRY_APP_NAME else "extensions"
+    logger_name = "industries" if INDUSTRIES_APP_NAME else "extensions"
 
     if not isinstance(name, str):
         raise TypeError(

@@ -28,7 +28,7 @@ ZKILLBOARD_KILLMAIL_URL_REGEX = r"^http[s]?:\/\/zkillboard\.com\/kill\/\d+\/"
 # Set Test Mode True or False
 
 # Set Naming on Auth Hook
-INDUSTRY_APP_NAME = clean_setting("INDUSTRY_APP_NAME", "Industry")
+INDUSTRIES_APP_NAME = clean_setting("INDUSTRIES_APP_NAME", "Industries")
 
 # If True you need to set up the Logger
-INDUSTRY_LOGGER_USE = clean_setting("INDUSTRY_LOGGER_USE", False)
+INDUSTRIES_LOGGER_USE = clean_setting("INDUSTRIES_LOGGER_USE", False)

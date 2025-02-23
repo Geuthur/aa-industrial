@@ -5,9 +5,9 @@ from django.template.defaulttags import register
 from django.templatetags.static import static
 from django.utils.safestring import mark_safe
 
-from industry import __title__, __version__
-from industry.helpers.static_files import calculate_integrity_hash
-from industry.hooks import get_extension_logger
+from industries import __title__, __version__
+from industries.helpers.static_files import calculate_integrity_hash
+from industries.hooks import get_extension_logger
 
 logger = get_extension_logger(__name__)
 

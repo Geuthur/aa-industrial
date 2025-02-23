@@ -7,8 +7,8 @@ from functools import wraps
 
 from app_utils.esi import EsiDailyDowntime, fetch_esi_status
 
-from industry.app_settings import IS_TESTING
-from industry.hooks import get_extension_logger
+from industries.app_settings import IS_TESTING
+from industries.hooks import get_extension_logger
 
 logger = get_extension_logger(__name__)
 

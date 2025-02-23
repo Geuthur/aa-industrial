@@ -7,7 +7,7 @@ from django.urls import reverse
 
 from app_utils.testdata_factories import UserMainFactory
 
-from industry.views import index
+from industries.views import index
 
 
 class TestViews(TestCase):
@@ -17,12 +17,12 @@ class TestViews(TestCase):
         cls.factory = RequestFactory()
         cls.user = UserMainFactory(
             permissions=[
-                "industry.basic_access",
+                "industries.basic_access",
             ]
         )
 
     def test_view(self):
-        request = self.factory.get(reverse("industry:index"))
+        request = self.factory.get(reverse("industries:index"))
         request.user = self.user
         response = index(request)
         self.assertEqual(response.status_code, HTTPStatus.OK)

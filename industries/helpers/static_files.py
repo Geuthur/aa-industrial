@@ -16,8 +16,8 @@ from allianceauth.services.hooks import get_extension_logger
 from app_utils.logging import LoggerAddTag
 
 # AA Fleet Pings
-from industry import __title__
-from industry.constants import AA_INDUSTRY_STATIC_DIR
+from industries import __title__
+from industries.constants import AA_INDUSTRIES_STATIC_DIR
 
 logger = LoggerAddTag(my_logger=get_extension_logger(__name__), prefix=__title__)
 
@@ -27,13 +27,13 @@ def calculate_integrity_hash(relative_file_path: str) -> str:
     Calculates the integrity hash for a given static file
     :param self:
     :type self:
-    :param relative_file_path: The file path relative to the `aa-industry/industry/static/industry` folder
+    :param relative_file_path: The file path relative to the `aa-industries/industries/static/industries` folder
     :type relative_file_path: str
     :return: The integrity hash
     :rtype: str
     """
 
-    file_path = os.path.join(AA_INDUSTRY_STATIC_DIR, relative_file_path)
+    file_path = os.path.join(AA_INDUSTRIES_STATIC_DIR, relative_file_path)
     integrity_hash = calculate_integrity(Path(file_path), Algorithm.SHA512)
 
     return integrity_hash

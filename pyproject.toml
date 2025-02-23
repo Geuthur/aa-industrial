@@ -5,7 +5,7 @@ requires = [
 ]
 
 [project]
-name = "aa-industry"
+name = "aa-industries"
 description = "Here is your description"
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -43,18 +43,18 @@ optional-dependencies.tests-allianceauth-latest = [
     "coverage",
     "django-webtest",
 ]
-urls.Changelog = "https://github.com/Geuthur/aa-industry/blob/master/CHANGELOG.md"
-urls.Homepage = "https://github.com/Geuthur/aa-industry"
-urls.Source = "https://github.com/Geuthur/aa-industry"
-urls.Tracker = "https://github.com/Geuthur/aa-industry/issues"
+urls.Changelog = "https://github.com/Geuthur/aa-industries/blob/master/CHANGELOG.md"
+urls.Homepage = "https://github.com/Geuthur/aa-industries"
+urls.Source = "https://github.com/Geuthur/aa-industries"
+urls.Tracker = "https://github.com/Geuthur/aa-industries/issues"
 
 [tool.hatch.build]
 include = [
-    "/industry",
+    "/industries",
 ]
 
 [tool.hatch.version]
-path = "industry/__init__.py"
+path = "industries/__init__.py"
 
 [tool.isort]
 profile = "black"
