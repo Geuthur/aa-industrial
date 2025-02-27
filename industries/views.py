@@ -14,3 +14,10 @@ logger = get_extension_logger(__name__)
 def index(request):
     context = {}
     return render(request, "industries/index.html", context=context)
+
+
+@login_required
+@permission_required("industries.basic_access")
+def industry(request):
+    context = {}
+    return render(request, "industries/test_view.html", context=context)

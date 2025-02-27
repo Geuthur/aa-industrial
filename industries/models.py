@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 
 # Alliance Auth
 from esi.models import Token
+from eveuniverse.models import EveType
 
 from industries.managers import IndustriesManager
 
@@ -40,3 +41,17 @@ class Industries(models.Model):
         return f"{self.token.character_name} - {self.token.character_id}"
 
     objects = IndustriesManager()
+
+
+class Reactions(models.Model):
+    reaction = models.ForeignKey(
+        EveType, on_delete=models.CASCADE, related_name="reactions"
+    )
+
+    reaction_blueprint = models.ForeignKey(
+        EveType, on_delete=models.CASCADE, related_name="reaction_blueprints", null=True
+    )
+
+    class Meta:
+        default_permissions = ()
+        verbose_name = _("Reaction")

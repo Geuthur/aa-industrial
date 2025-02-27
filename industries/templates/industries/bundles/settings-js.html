@@ -1,0 +1,16 @@
+{% load i18n %}
+
+<script type="application/javascript">
+    let industriessettings = {
+        // Core
+        corporation_id: 0,
+        csrf: "{{ csrf_token }}",
+        // URLs
+        IndustryTestUrl: '{% url "industries:api:get_blueprint_industry" blueprint_id=999 %}',
+        // Update URLs
+
+        // Translations
+        translations: {
+        }
+    };
+</script>

@@ -1,0 +1,106 @@
+{% load i18n %}
+<div class="table-responsive">
+    <!-- Materials Content-->
+    <table class="table table-dark table-striped w-100 tax-table-hover tax-table-striped" id="materials">
+        <thead>
+            <tr>
+                <th scope="col">{% translate "" %}</th>
+                <th scope="col">{% translate "Material Name" %}</th>
+                <th scope="col">{% translate "Quantity" %}</th>
+                <th scope="col">{% translate "Submaterials" %}</th>
+                <th scope="col">{% translate "Details" %}</th>
+            </tr>
+        </thead>
+        <tbody id="materials-body">
+            <!-- Material Rows will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+/* global taxsystemsettings bootstrap */
+
+document.addEventListener('DOMContentLoaded', function () {
+    const industries = $('#materials');
+
+    const industriesTable = industries.DataTable({
+        ajax: {
+            url: industriessettings.IndustryTestUrl,
+            type: 'GET',
+            dataSrc: function (data) {
+                if (Array.isArray(data.materials)) {
+                    return data.materials;
+                } else {
+                    console.error('Unexpected data format:', data);
+                    return [];
+                }
+            },
+            error: function (xhr, error, thrown) {
+                console.error('Error loading data:', error);
+                industriesTable.clear().draw();
+            }
+        },
+        stateSave: true, // Enable state saving
+        columns: [
+            {
+                data: 'portrait',
+                render: function (data, type, row) {
+                    return data;
+                }
+            },
+            {
+                data: 'material_eve_type__name',
+                render: function (data, type, row) {
+                    return `<span data-tooltip-toggle="industries-tooltip" title="${row.description}">${data}</span>`;
+                }
+            },
+            {
+                data: 'quantity',
+                render: function (data) {
+                    return data.toLocaleString();
+                }
+            },
+            {
+                data: 'materials',
+                render: function (data) {
+                    return renderSubmaterials(data);
+                }
+            },
+            {
+                data: 'material_eve_type_id',
+                render: function (data, type, row) {
+                    if (!row.has_submaterials) {
+                        return ``;
+                    }
+                    const url = `{% url 'industries:api:get_material' eve_id=0 %}`.replace('0', data);
+                    return `<a href="${url}">${data}</a>`;
+                }
+            },
+        ],
+        order: [[1, 'asc']],
+    });
+
+    industriesTable.on('draw', function (row, data) {
+        $('[data-tooltip-toggle="industries-tooltip"]').tooltip({
+            trigger: 'hover',
+        });
+    });
+
+    function renderSubmaterials(materials) {
+        if (!materials || materials.length === 0) {
+            return '';
+        }
+        let submaterialsHtml = '<ul>';
+        materials.forEach(material => {
+            submaterialsHtml += `<li>${material.material_eve_type__name} (${material.quantity.toLocaleString()})`;
+            if (material.materials && material.materials.length > 0) {
+                submaterialsHtml += renderSubmaterials(material.materials);
+            }
+            submaterialsHtml += '</li>';
+        });
+        submaterialsHtml += '</ul>';
+        return submaterialsHtml;
+    }
+});
+
+</script>

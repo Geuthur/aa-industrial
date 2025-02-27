@@ -13,11 +13,11 @@ logger = get_extension_logger(__name__)
 
 
 @register.simple_tag
-def template_static(relative_file_path: str, script_type: str = None) -> str | None:
+def industries_static(relative_file_path: str, script_type: str = None) -> str | None:
     """
     Versioned static URL
 
-    :param relative_file_path: The file path relative to the `aa-template/template/static/template` folder
+    :param relative_file_path: The file path relative to the `aa-industries/industries/static/industries` folder
     :type relative_file_path: str
     :param script_type: The script type
     :type script_type: str
@@ -35,7 +35,7 @@ def template_static(relative_file_path: str, script_type: str = None) -> str | N
     if file_type not in ["css", "js"]:
         raise ValueError(f"Unsupported file type: {file_type}")
 
-    static_file_path = os.path.join("template", relative_file_path)
+    static_file_path = os.path.join("industries", relative_file_path)
     static_url = static(static_file_path)
 
     # Integrity hash calculation only for non-debug mode

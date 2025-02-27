@@ -1,7 +1,8 @@
 # Template module for AllianceAuth.<a name="aa-industries"></a>
 
 A Industries tool for Alliance Auth
-_______________________________________________________________________
+
+______________________________________________________________________
 
 - [AA Template](#aa-industries)
   - [Features](#features)
@@ -18,6 +19,7 @@ _______________________________________________________________________
 ## Features<a name="features"></a>
 
 ## Upcoming<a name="upcoming"></a>
+
 - Production Interface
 - RAW Material Information for each Blueprint
 - Notification for Production are finished
